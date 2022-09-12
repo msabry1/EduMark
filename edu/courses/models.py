@@ -10,11 +10,12 @@ class Course(models.Model):
     category = models.ForeignKey('Category',on_delete=models.CASCADE)
     owner =  models.ForeignKey(User,on_delete=models.CASCADE)
     videos_number = models.IntegerField()
-    videos_hours = models.FloatField()
+    videos_hours = models.IntegerField()
     description = models.TextField()
     required_skills = models.TextField()
-    course_image = models.ImageField(upload_to='courses/%Y/%m/%d')
+    course_image = models.ImageField(upload_to='courses_image/%Y/%m/%d',null=True)
     publish_date = models.DateTimeField(auto_now= True)
+
 
 
     def __str__(self):

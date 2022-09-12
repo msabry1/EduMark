@@ -118,16 +118,10 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="Web-tab11" data-toggle="tab" href="#Web11" role="tab"
-                                        aria-controls="design" aria-selected="false">Adobe XD</a>
-                                </li>
+                                        aria-controls="design" aria-selected="false">Mobile Dev</a></li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="Adobe-XD-tab8" data-toggle="tab" href="#Adobe-XD8" role="tab"
-                                        aria-controls="design" aria-selected="false">Sketch App</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="Adobe-XD-tab9" data-toggle="tab" href="#Adobe-XD9" role="tab"
-                                        aria-controls="design" aria-selected="false">Illustrator</a>
-                                </li>
+                                    <a class="nav-link" id="Web-tab11" data-toggle="tab" href="#Web11" role="tab"
+                                        aria-controls="design" aria-selected="false">AI</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -140,162 +134,58 @@
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                             <div class="row">
+
+                                    {%if courses%}
+                                    {%for course in courses|slice:":6"%}
                                     <div class="col-xl-4 col-lg-4 col-md-6">
                                         <div class="single_courses">
                                             <div class="thumb">
-                                                <a href="#">
-                                                    <img src="{% static 'img/courses/1.png' %}" alt="">
+                                                <a href="{% url 'course' course.id %}">
+                                                    <img src="{{course.course_image.url}}" width="362px" height="250px" alt="{{course.name}}">
                                                 </a>
                                             </div>
                                             <div class="courses_info">
-                                                <span>Photoshop</span>
-                                                <h3><a href="#">Mobile App design step by step <br>
-                                                        from beginner</a></h3>
+                                                <span>{{course.category}}</span>
+                                                <h3><a href="{% url 'course' course.id %}">{{course.name}}</a></h3>
                                                 <div class="star_prise d-flex justify-content-between">
                                                     <div class="star">
                                                         <i class="flaticon-mark-as-favorite-star"></i>
                                                         <span>(4.5)</span>
                                                     </div>
                                                     <div class="prise">
-                                                        <span class="offer">$89.00</span>
+                                                        {%if not course.newprice%}
                                                         <span class="active_prise">
-                                                            $49
+                                                            ${{course.price}}
                                                         </span>
+                                                        {%else%}
+
+                                                        <span class="offer">${{course.price}}</span>
+                                                        <span class="active_prise">
+                                                            
+                                                            ${{course.newprice}}
+                                                        </span>
+                                                        {%endif%}
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-xl-4 col-lg-4 col-md-6">
-                                        <div class="single_courses">
-                                            <div class="thumb">
-                                                <a href="#">
-                                                    <img src="{% static 'img/courses/2.png' %}" alt="">
-                                                </a>
-                                            </div>
-                                            <div class="courses_info">
-                                                <span>Adobe XD</span>
-                                                <h3><a href="#">UI/UX design with Adobe XD with Anderson</a></h3>
-                                                <div class="star_prise d-flex justify-content-between">
-                                                    <div class="star">
-                                                        <i class="flaticon-mark-as-favorite-star"></i>
-                                                        <span>(4.5)</span>
-                                                    </div>
-                                                    <div class="prise">
-                                                        <span class="offer">$89.00</span>
-                                                        <span class="active_prise">
-                                                            $49
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-4 col-lg-4 col-md-6">
-                                        <div class="single_courses">
-                                            <div class="thumb">
-                                                <a href="#">
-                                                    <img src="{% static 'img/courses/3.png' %}" alt="">
-                                                </a>
-                                            </div>
-                                            <div class="courses_info">
-                                                <span>Wordpress</span>
-                                                <h3><a href="#">Wordpress theme development <br>
-                                                        from scratch</a></h3>
-                                                <div class="star_prise d-flex justify-content-between">
-                                                    <div class="star">
-                                                        <i class="flaticon-mark-as-favorite-star"></i>
-                                                        <span>(4.5)</span>
-                                                    </div>
-                                                    <div class="prise">
-                                                        <span class="offer">$89.00</span>
-                                                        <span class="active_prise">
-                                                            $49
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-4 col-lg-4 col-md-6">
-                                        <div class="single_courses">
-                                            <div class="thumb">
-                                                <a href="#">
-                                                    <img src="{% static 'img/courses/4.png' %}" alt="">
-                                                </a>
-                                            </div>
-                                            <div class="courses_info">
-                                                <span>Photoshop</span>
-                                                <h3><a href="#">Mobile App design step by step <br>
-                                                        from beginner</a></h3>
-                                                <div class="star_prise d-flex justify-content-between">
-                                                    <div class="star">
-                                                        <i class="flaticon-mark-as-favorite-star"></i>
-                                                        <span>(4.5)</span>
-                                                    </div>
-                                                    <div class="prise">
-                                                        <span class="offer">$89.00</span>
-                                                        <span class="active_prise">
-                                                            $49
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-4 col-lg-4 col-md-6">
-                                        <div class="single_courses">
-                                            <div class="thumb">
-                                                <img src="{% static 'img/courses/5.png' %}" alt="">
-                                            </div>
-                                            <div class="courses_info">
-                                                <span>UI/UX</span>
-                                                <h3><a href="#">How to complete user research <br>
-                                                        and make work flow</a></h3>
-                                                <div class="star_prise d-flex justify-content-between">
-                                                    <div class="star">
-                                                        <i class="flaticon-mark-as-favorite-star"></i>
-                                                        <span>(4.5)</span>
-                                                    </div>
-                                                    <div class="prise">
-                                                        <span class="offer">$89.00</span>
-                                                        <span class="active_prise">
-                                                            $49
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-4 col-lg-4 col-md-6">
-                                        <div class="single_courses">
-                                            <div class="thumb">
-                                                <a href="#">
-                                                    <img src="{% static 'img/courses/6.png' %}" alt="">
-                                                </a>
-                                            </div>
-                                            <div class="courses_info">
-                                                <span>Wordpress</span>
-                                                <h3><a href="#">Commitment to dedicated <br>
-                                                        Support</a></h3>
-                                                <div class="star_prise d-flex justify-content-between">
-                                                    <div class="star">
-                                                        <i class="flaticon-mark-as-favorite-star"></i>
-                                                        <span>(4.5)</span>
-                                                    </div>
-                                                    <div class="prise">
-                                                        <span class="offer">$89.00</span>
-                                                        <span class="active_prise">
-                                                            $49
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    {%endfor%}
+                                    {%endif%}
+
+
+
+
+
+
+
+
+
+
+                                    <!-- #################################### -->
                                     <div class="col-xl-12">
                                         <div class="more_courses text-center">
-                                            <a href="#" class="boxed_btn_rev">More Courses</a>
+                                            <a href="{%url 'courses'%}" class="boxed_btn_rev">More Courses</a>
                                         </div>
                                     </div>
                                 </div>
@@ -306,7 +196,7 @@
                                         <div class="single_courses">
                                             <div class="thumb">
                                                 <a href="#">
-                                                    <img src="{% static 'img/courses/1.png' %}" alt="">
+                                                    <img src="{% static 'img/courses/1.png' %} " alt="">
                                                 </a>
                                             </div>
                                             <div class="courses_info">
@@ -332,7 +222,7 @@
                                         <div class="single_courses">
                                             <div class="thumb">
                                                 <a href="#">
-                                                    <img src="{% static 'img/courses/2.png' %}" alt="">
+                                                    <img src="{% static 'img/courses/2.png' %} " alt="">
                                                 </a>
                                             </div>
                                             <div class="courses_info">
@@ -357,7 +247,7 @@
                                         <div class="single_courses">
                                             <div class="thumb">
                                                 <a href="#">
-                                                    <img src="{% static 'img/courses/3.png' %}" alt="">
+                                                    <img src="{% static 'img/courses/3.png' %} " alt="">
                                                 </a>
                                             </div>
                                             <div class="courses_info">
@@ -383,7 +273,7 @@
                                         <div class="single_courses">
                                             <div class="thumb">
                                                 <a href="#">
-                                                    <img src="{% static 'img/courses/4.png' %}" alt="">
+                                                    <img src="{% static 'img/courses/4.png' %} " alt="">
                                                 </a>
                                             </div>
                                             <div class="courses_info">
@@ -408,7 +298,7 @@
                                     <div class="col-xl-4 col-lg-4 col-md-6">
                                         <div class="single_courses">
                                             <div class="thumb">
-                                                <img src="{% static 'img/courses/5.png' %}" alt="">
+                                                <img src="{% static 'img/courses/5.png' %} " alt="">
                                             </div>
                                             <div class="courses_info">
                                                 <span>UI/UX</span>
@@ -433,7 +323,7 @@
                                         <div class="single_courses">
                                             <div class="thumb">
                                                 <a href="#">
-                                                    <img src="{% static 'img/courses/6.png' %}" alt="">
+                                                    <img src="{% static 'img/courses/6.png' %} " alt="">
                                                 </a>
                                             </div>
                                             <div class="courses_info">
@@ -468,7 +358,7 @@
                                         <div class="single_courses">
                                             <div class="thumb">
                                                 <a href="#">
-                                                    <img src="{% static 'img/courses/1.png' %}" alt="">
+                                                    <img src="{% static 'img/courses/1.png' %} " alt="">
                                                 </a>
                                             </div>
                                             <div class="courses_info">
@@ -494,7 +384,7 @@
                                         <div class="single_courses">
                                             <div class="thumb">
                                                 <a href="#">
-                                                    <img src="{% static 'img/courses/2.png' %}" alt="">
+                                                    <img src="{% static 'img/courses/2.png' %} " alt="">
                                                 </a>
                                             </div>
                                             <div class="courses_info">
@@ -519,7 +409,7 @@
                                         <div class="single_courses">
                                             <div class="thumb">
                                                 <a href="#">
-                                                    <img src="{% static 'img/courses/3.png' %}" alt="">
+                                                    <img src="{% static 'img/courses/3.png' %} " alt="">
                                                 </a>
                                             </div>
                                             <div class="courses_info">
@@ -545,7 +435,7 @@
                                         <div class="single_courses">
                                             <div class="thumb">
                                                 <a href="#">
-                                                    <img src="{% static 'img/courses/4.png' %}" alt="">
+                                                    <img src="{% static 'img/courses/4.png' %} " alt="">
                                                 </a>
                                             </div>
                                             <div class="courses_info">
@@ -570,7 +460,7 @@
                                     <div class="col-xl-4 col-lg-4 col-md-6">
                                         <div class="single_courses">
                                             <div class="thumb">
-                                                <img src="{% static 'img/courses/5.png' %}" alt="">
+                                                <img src="{% static 'img/courses/5.png' %} " alt="">
                                             </div>
                                             <div class="courses_info">
                                                 <span>UI/UX</span>
@@ -595,7 +485,7 @@
                                         <div class="single_courses">
                                             <div class="thumb">
                                                 <a href="#">
-                                                    <img src="{% static 'img/courses/6.png' %}" alt="">
+                                                    <img src="{% static 'img/courses/6.png' %} " alt="">
                                                 </a>
                                             </div>
                                             <div class="courses_info">
@@ -630,7 +520,7 @@
                                         <div class="single_courses">
                                             <div class="thumb">
                                                 <a href="#">
-                                                    <img src="{% static 'img/courses/1.png' %}" alt="">
+                                                    <img src="{% static 'img/courses/1.png' %} " alt="">
                                                 </a>
                                             </div>
                                             <div class="courses_info">
@@ -656,7 +546,7 @@
                                         <div class="single_courses">
                                             <div class="thumb">
                                                 <a href="#">
-                                                    <img src="{% static 'img/courses/2.png' %}" alt="">
+                                                    <img src="{% static 'img/courses/2.png' %} " alt="">
                                                 </a>
                                             </div>
                                             <div class="courses_info">
@@ -681,7 +571,7 @@
                                         <div class="single_courses">
                                             <div class="thumb">
                                                 <a href="#">
-                                                    <img src="{% static 'img/courses/3.png' %}" alt="">
+                                                    <img src="{% static 'img/courses/3.png' %} " alt="">
                                                 </a>
                                             </div>
                                             <div class="courses_info">
@@ -707,7 +597,7 @@
                                         <div class="single_courses">
                                             <div class="thumb">
                                                 <a href="#">
-                                                    <img src="{% static 'img/courses/4.png' %}" alt="">
+                                                    <img src="{% static 'img/courses/4.png' %} " alt="">
                                                 </a>
                                             </div>
                                             <div class="courses_info">
@@ -732,7 +622,7 @@
                                     <div class="col-xl-4 col-lg-4 col-md-6">
                                         <div class="single_courses">
                                             <div class="thumb">
-                                                <img src="{% static 'img/courses/5.png' %}" alt="">
+                                                <img src="{% static 'img/courses/5.png' %} " alt="">
                                             </div>
                                             <div class="courses_info">
                                                 <span>UI/UX</span>
@@ -757,7 +647,7 @@
                                         <div class="single_courses">
                                             <div class="thumb">
                                                 <a href="#">
-                                                    <img src="{% static 'img/courses/6.png' %}" alt="">
+                                                    <img src="{% static 'img/courses/6.png' %} " alt="">
                                                 </a>
                                             </div>
                                             <div class="courses_info">
@@ -792,7 +682,7 @@
                                         <div class="single_courses">
                                             <div class="thumb">
                                                 <a href="#">
-                                                    <img src="{% static 'img/courses/1.png' %}" alt="">
+                                                    <img src="{% static 'img/courses/1.png' %} " alt="">
                                                 </a>
                                             </div>
                                             <div class="courses_info">
@@ -818,7 +708,7 @@
                                         <div class="single_courses">
                                             <div class="thumb">
                                                 <a href="#">
-                                                    <img src="{% static 'img/courses/2.png' %}" alt="">
+                                                    <img src="{% static 'img/courses/2.png' %} " alt="">
                                                 </a>
                                             </div>
                                             <div class="courses_info">
@@ -843,7 +733,7 @@
                                         <div class="single_courses">
                                             <div class="thumb">
                                                 <a href="#">
-                                                    <img src="{% static 'img/courses/3.png' %}" alt="">
+                                                    <img src="{% static 'img/courses/3.png' %} " alt="">
                                                 </a>
                                             </div>
                                             <div class="courses_info">
@@ -869,7 +759,7 @@
                                         <div class="single_courses">
                                             <div class="thumb">
                                                 <a href="#">
-                                                    <img src="{% static 'img/courses/4.png' %}" alt="">
+                                                    <img src="{% static 'img/courses/4.png' %} " alt="">
                                                 </a>
                                             </div>
                                             <div class="courses_info">
@@ -894,7 +784,7 @@
                                     <div class="col-xl-4 col-lg-4 col-md-6">
                                         <div class="single_courses">
                                             <div class="thumb">
-                                                <img src="{% static 'img/courses/5.png' %}" alt="">
+                                                <img src="{% static 'img/courses/5.png' %} " alt="">
                                             </div>
                                             <div class="courses_info">
                                                 <span>UI/UX</span>
@@ -919,7 +809,7 @@
                                         <div class="single_courses">
                                             <div class="thumb">
                                                 <a href="#">
-                                                    <img src="{% static 'img/courses/6.png' %}" alt="">
+                                                    <img src="{% static 'img/courses/6.png' %} " alt="">
                                                 </a>
                                             </div>
                                             <div class="courses_info">
@@ -954,7 +844,7 @@
                                         <div class="single_courses">
                                             <div class="thumb">
                                                 <a href="#">
-                                                    <img src="{% static 'img/courses/1.png' %}" alt="">
+                                                    <img src="{% static 'img/courses/1.png' %} " alt="">
                                                 </a>
                                             </div>
                                             <div class="courses_info">
@@ -980,7 +870,7 @@
                                         <div class="single_courses">
                                             <div class="thumb">
                                                 <a href="#">
-                                                    <img src="{% static 'img/courses/2.png' %}" alt="">
+                                                    <img src="{% static 'img/courses/2.png' %} " alt="">
                                                 </a>
                                             </div>
                                             <div class="courses_info">
@@ -1005,7 +895,7 @@
                                         <div class="single_courses">
                                             <div class="thumb">
                                                 <a href="#">
-                                                    <img src="{% static 'img/courses/3.png' %}" alt="">
+                                                    <img src="{% static 'img/courses/3.png' %} " alt="">
                                                 </a>
                                             </div>
                                             <div class="courses_info">
@@ -1031,7 +921,7 @@
                                         <div class="single_courses">
                                             <div class="thumb">
                                                 <a href="#">
-                                                    <img src="{% static 'img/courses/4.png' %}" alt="">
+                                                    <img src="{% static 'img/courses/4.png' %} " alt="">
                                                 </a>
                                             </div>
                                             <div class="courses_info">
@@ -1056,7 +946,7 @@
                                     <div class="col-xl-4 col-lg-4 col-md-6">
                                         <div class="single_courses">
                                             <div class="thumb">
-                                                <img src="{% static 'img/courses/5.png' %}" alt="">
+                                                <img src="{% static 'img/courses/5.png' %} " alt="">
                                             </div>
                                             <div class="courses_info">
                                                 <span>UI/UX</span>
@@ -1081,7 +971,7 @@
                                         <div class="single_courses">
                                             <div class="thumb">
                                                 <a href="#">
-                                                    <img src="{% static 'img/courses/6.png' %}" alt="">
+                                                    <img src="{% static 'img/courses/6.png' %} " alt="">
                                                 </a>
                                             </div>
                                             <div class="courses_info">
@@ -1116,7 +1006,7 @@
                                         <div class="single_courses">
                                             <div class="thumb">
                                                 <a href="#">
-                                                    <img src="{% static 'img/courses/1.png' %}" alt="">
+                                                    <img src="{% static 'img/courses/1.png' %} " alt="">
                                                 </a>
                                             </div>
                                             <div class="courses_info">
@@ -1142,7 +1032,7 @@
                                         <div class="single_courses">
                                             <div class="thumb">
                                                 <a href="#">
-                                                    <img src="{% static 'img/courses/2.png' %}" alt="">
+                                                    <img src="{% static 'img/courses/2.png' %} " alt="">
                                                 </a>
                                             </div>
                                             <div class="courses_info">
@@ -1167,7 +1057,7 @@
                                         <div class="single_courses">
                                             <div class="thumb">
                                                 <a href="#">
-                                                    <img src="{% static 'img/courses/3.png' %}" alt="">
+                                                    <img src="{% static 'img/courses/3.png' %} " alt="">
                                                 </a>
                                             </div>
                                             <div class="courses_info">
@@ -1193,7 +1083,7 @@
                                         <div class="single_courses">
                                             <div class="thumb">
                                                 <a href="#">
-                                                    <img src="{% static 'img/courses/4.png' %}" alt="">
+                                                    <img src="{% static 'img/courses/4.png' %} " alt="">
                                                 </a>
                                             </div>
                                             <div class="courses_info">
@@ -1218,7 +1108,7 @@
                                     <div class="col-xl-4 col-lg-4 col-md-6">
                                         <div class="single_courses">
                                             <div class="thumb">
-                                                <img src="{% static 'img/courses/5.png' %}" alt="">
+                                                <img src="{% static 'img/courses/5.png' %} " alt="">
                                             </div>
                                             <div class="courses_info">
                                                 <span>UI/UX</span>
@@ -1243,7 +1133,7 @@
                                         <div class="single_courses">
                                             <div class="thumb">
                                                 <a href="#">
-                                                    <img src="{% static 'img/courses/6.png' %}" alt="">
+                                                    <img src="{% static 'img/courses/6.png' %} " alt="">
                                                 </a>
                                             </div>
                                             <div class="courses_info">
@@ -1278,7 +1168,7 @@
                                         <div class="single_courses">
                                             <div class="thumb">
                                                 <a href="#">
-                                                    <img src="{% static 'img/courses/1.png' %}" alt="">
+                                                    <img src="{% static 'img/courses/1.png' %} " alt="">
                                                 </a>
                                             </div>
                                             <div class="courses_info">
@@ -1304,7 +1194,7 @@
                                         <div class="single_courses">
                                             <div class="thumb">
                                                 <a href="#">
-                                                    <img src="{% static 'img/courses/2.png' %}" alt="">
+                                                    <img src="{% static 'img/courses/2.png' %} " alt="">
                                                 </a>
                                             </div>
                                             <div class="courses_info">
@@ -1329,7 +1219,7 @@
                                         <div class="single_courses">
                                             <div class="thumb">
                                                 <a href="#">
-                                                    <img src="{% static 'img/courses/3.png' %}" alt="">
+                                                    <img src="{% static 'img/courses/3.png' %} " alt="">
                                                 </a>
                                             </div>
                                             <div class="courses_info">
@@ -1355,7 +1245,7 @@
                                         <div class="single_courses">
                                             <div class="thumb">
                                                 <a href="#">
-                                                    <img src="{% static 'img/courses/4.png' %}" alt="">
+                                                    <img src="{% static 'img/courses/4.png' %} " alt="">
                                                 </a>
                                             </div>
                                             <div class="courses_info">
@@ -1380,7 +1270,7 @@
                                     <div class="col-xl-4 col-lg-4 col-md-6">
                                         <div class="single_courses">
                                             <div class="thumb">
-                                                <img src="{% static 'img/courses/5.png' %}" alt="">
+                                                <img src="{% static 'img/courses/5.png' %} " alt="">
                                             </div>
                                             <div class="courses_info">
                                                 <span>UI/UX</span>
@@ -1405,7 +1295,7 @@
                                         <div class="single_courses">
                                             <div class="thumb">
                                                 <a href="#">
-                                                    <img src="{% static 'img/courses/6.png' %}" alt="">
+                                                    <img src="{% static 'img/courses/6.png' %} " alt="">
                                                 </a>
                                             </div>
                                             <div class="courses_info">
@@ -1440,7 +1330,7 @@
                                         <div class="single_courses">
                                             <div class="thumb">
                                                 <a href="#">
-                                                    <img src="{% static 'img/courses/1.png' %}" alt="">
+                                                    <img src="{% static 'img/courses/1.png' %} " alt="">
                                                 </a>
                                             </div>
                                             <div class="courses_info">
@@ -1466,7 +1356,7 @@
                                         <div class="single_courses">
                                             <div class="thumb">
                                                 <a href="#">
-                                                    <img src="{% static 'img/courses/2.png' %}" alt="">
+                                                    <img src="{% static 'img/courses/2.png' %} " alt="">
                                                 </a>
                                             </div>
                                             <div class="courses_info">
@@ -1491,7 +1381,7 @@
                                         <div class="single_courses">
                                             <div class="thumb">
                                                 <a href="#">
-                                                    <img src="{% static 'img/courses/3.png' %}" alt="">
+                                                    <img src="{% static 'img/courses/3.png' %} " alt="">
                                                 </a>
                                             </div>
                                             <div class="courses_info">
@@ -1517,7 +1407,7 @@
                                         <div class="single_courses">
                                             <div class="thumb">
                                                 <a href="#">
-                                                    <img src="{% static 'img/courses/4.png' %}" alt="">
+                                                    <img src="{% static 'img/courses/4.png' %} " alt="">
                                                 </a>
                                             </div>
                                             <div class="courses_info">
@@ -1542,7 +1432,7 @@
                                     <div class="col-xl-4 col-lg-4 col-md-6">
                                         <div class="single_courses">
                                             <div class="thumb">
-                                                <img src="{% static 'img/courses/5.png' %}" alt="">
+                                                <img src="{% static 'img/courses/5.png' %} " alt="">
                                             </div>
                                             <div class="courses_info">
                                                 <span>UI/UX</span>
@@ -1567,7 +1457,7 @@
                                         <div class="single_courses">
                                             <div class="thumb">
                                                 <a href="#">
-                                                    <img src="{% static 'img/courses/6.png' %}" alt="">
+                                                    <img src="{% static 'img/courses/6.png' %} " alt="">
                                                 </a>
                                             </div>
                                             <div class="courses_info">

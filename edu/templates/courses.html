@@ -71,17 +71,17 @@
                             <div class="row">
 
                                     {%if courses%}
-                                    {%for course in courses|slice:":6"%}
+                                    {%for course in courses%}
                                     <div class="col-xl-4 col-lg-4 col-md-6">
                                         <div class="single_courses">
                                             <div class="thumb">
-                                                <a href="#">
-                                                    <img src="{{course.course_image.url}} " alt="{{course.name}}">
+                                                <a href="{% url 'course' course.id %}">
+                                                    <img src="{{course.course_image.url}} " width="362px" height="250px" alt="{{course.name}}">
                                                 </a>
                                             </div>
                                             <div class="courses_info">
                                                 <span>{{course.category}}</span>
-                                                <h3><a href="#">{{course.name}}</a></h3>
+                                                <h3><a href="{% url 'course' course.id %}">{{course.name}}</a></h3>
                                                 <div class="star_prise d-flex justify-content-between">
                                                     <div class="star">
                                                         <i class="flaticon-mark-as-favorite-star"></i>
@@ -118,11 +118,7 @@
 
 
                                     <!-- #################################### -->
-                                    <div class="col-xl-12">
-                                        <div class="more_courses text-center">
-                                            <a href="#" class="boxed_btn_rev">More Courses</a>
-                                        </div>
-                                    </div>
+
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">

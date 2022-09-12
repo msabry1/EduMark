@@ -13,3 +13,9 @@ def courses(request):
         'courses':all
     }
     return render(request,"courses.html",context)
+
+def course(request,coid):
+    func(request)
+    return render(request,"course_details.html",{
+        'course':Course.objects.get(id=coid)
+    })
