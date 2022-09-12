@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "mathfilters",
 ]
 
 MIDDLEWARE = [
@@ -120,6 +121,11 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [f"{BASE_DIR}/home/static"]
 STATIC_ROOT = f"{BASE_DIR}/static"
+
+
+# Media  files
+MEDIA_URL ='media/'
+MEDIA_ROOT = f"{BASE_DIR}/media"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
