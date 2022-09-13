@@ -14,6 +14,7 @@ def courses(request):
     }
     return render(request,"courses.html",context)
 
+
 def course(request,coid):
     func(request)
     return render(request,"course_details.html",{

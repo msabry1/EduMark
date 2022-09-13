@@ -11,6 +11,7 @@ class Course(models.Model):
     owner =  models.ForeignKey(User,on_delete=models.CASCADE)
     videos_number = models.IntegerField()
     videos_hours = models.IntegerField()
+    tutorials = models.IntegerField()
     description = models.TextField()
     required_skills = models.TextField()
     course_image = models.ImageField(upload_to='courses_image/%Y/%m/%d',null=True)
