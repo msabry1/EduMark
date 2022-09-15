@@ -6,12 +6,13 @@ from re import match
 from django.contrib import messages
 from django.contrib import auth
 from .loginandsignup import func
-from courses.models import Course
+from courses.models import Course , Category
 
 def homepage(request):
     func(request)
     return render(request,"index.html",context = {
-        'courses':Course.objects.all().order_by('-publish_date')
+        'courses':Course.objects.all().order_by('-publish_date') ,
+        'category':Category.objects.filter(displayonsite=True),
     })
 
 

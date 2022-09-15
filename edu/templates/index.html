@@ -88,47 +88,37 @@
                 </div>
             </div>
             <div class="row">
+                
                 <div class="col-xl-12">
+
+
                     <div class="course_nav">
                         <nav>
                             <ul class="nav" id="myTab" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
-                                        aria-controls="home" aria-selected="true">All Courses</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                                        aria-controls="profile" aria-selected="false">Photoshop</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
-                                        aria-controls="contact" aria-selected="false">UI/UX</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="design-tab" data-toggle="tab" href="#design" role="tab"
-                                        aria-controls="design" aria-selected="false">Web Design</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="Web-tab" data-toggle="tab" href="#Web" role="tab"
-                                        aria-controls="design" aria-selected="false">Web dev</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="Web-tab1" data-toggle="tab" href="#Web1" role="tab"
-                                        aria-controls="design" aria-selected="false">Wordpress</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="Web-tab11" data-toggle="tab" href="#Web11" role="tab"
-                                        aria-controls="design" aria-selected="false">Mobile Dev</a></li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="Web-tab11" data-toggle="tab" href="#Web12" role="tab"
-                                        aria-controls="design" aria-selected="false">AI</a></li>
-                            </ul>
+                                <li class="nav-item"> <!-- home -->
+                                   <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                                       aria-controls="home" aria-selected="true">All Courses</a>
+                               </li>
+
+                               {%for ca in category%}
+                               <li class="nav-item">
+                                   <a class="nav-link" id="profile-tab" data-toggle="tab" href="#{{ca.name}}" role="tab"
+                                       aria-controls="{{ca.name}}" aria-selected="false">{{ca.name}}</a>
+                               </li>
+                               {%endfor%}
+                               
+                           </ul>
                         </nav>
                     </div>
+
+
                 </div>
+
+
             </div>
 
         </div>
+
         <div class="all_courses">
             <div class="container">
                 <div class="tab-content" id="myTabContent">
@@ -136,12 +126,12 @@
                             <div class="row">
 
                                     {%if courses%}
-                                    {%for course in courses|slice:":6"%}
+                                    {%for course in courses|slice:':6'%}
                                     <div class="col-xl-4 col-lg-4 col-md-6">
                                         <div class="single_courses">
                                             <div class="thumb">
                                                 <a href="{% url 'course' course.id %}">
-                                                    <img src="{{course.course_image.url}}" width="362px" height="250px" alt="{{course.name}}">
+                                                    <img src="{{course.course_image.url}} " width="362px" height="250px" alt="{{course.name}}">
                                                 </a>
                                             </div>
                                             <div class="courses_info">
@@ -176,361 +166,80 @@
 
 
 
-                                    <div class="col-xl-12">
-                                        <div class="more_courses text-center">
-                                            <a href="{%url 'courses'%}" class="boxed_btn_rev">More Courses</a>
-                                        </div>
+
+
+
+
+
+
+                                    <!-- #################################### -->
+
+                                </div>
+                                <div class="col-xl-12">
+                                    <div class="more_courses text-center">
+                                        <a href="{%url 'courses'%}" class="boxed_btn_rev">More Courses</a>
                                     </div>
                                 </div>
                     </div>
-                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        <div class="row">
-                            {%if courses%}
-                            {%for course in courses|slice:":6"%}
-                            {%if course.category.name == "photoshop" %}
-                            <div class="col-xl-4 col-lg-4 col-md-6">
-                                <div class="single_courses">
-                                    <div class="thumb">
-                                        <a href="{% url 'course' course.id %}">
-                                            <img src="{{course.course_image.url}} " width="362px" height="250px" alt="{{course.name}}">
-                                        </a>
-                                    </div>
-                                    <div class="courses_info">
-                                        <span>{{course.category}}</span>
-                                        <h3><a href="{% url 'course' course.id %}">{{course.name}}</a></h3>
-                                        <div class="star_prise d-flex justify-content-between">
-                                            <div class="star">
-                                                <i class="flaticon-mark-as-favorite-star"></i>
-                                                <span>(4.5)</span>
-                                            </div>
-                                            <div class="prise">
-                                                {%if not course.newprice%}
-                                                <span class="active_prise">
-                                                    ${{course.price}}
-                                                </span>
-                                                {%else%}
+                    
 
-                                                <span class="offer">${{course.price}}</span>
-                                                <span class="active_prise">
-                                                    
-                                                    ${{course.newprice}}
-                                                </span>
-                                                {%endif%}
+                    {%for cat in category%}
+                    <div class="tab-pane fade" id="{{cat.name}}" role="tabpanel" aria-labelledby="{{cat.name}}-tab">
+                            <div class="row">
+                                {% for course in cat.course_set.all%}
+                                <div class="col-xl-4 col-lg-4 col-md-6">
+                                    <div class="single_courses">
+                                        <div class="thumb">
+                                            <a href="{% url 'course' course.id %}">
+                                                <img src="{{course.course_image.url}} " width="362px" height="250px" alt="{{course.name}}">
+                                            </a>
+                                        </div>
+                                        <div class="courses_info">
+                                            <span>{{course.category}}</span>
+                                            <h3><a href="{% url 'course' course.id %}">{{course.name}}</a></h3>
+                                            <div class="star_prise d-flex justify-content-between">
+                                                <div class="star">
+                                                    <i class="flaticon-mark-as-favorite-star"></i>
+                                                    <span>(4.5)</span>
+                                                </div>
+                                                <div class="prise">
+                                                    {%if not course.newprice%}
+                                                    <span class="active_prise">
+                                                        ${{course.price}}
+                                                    </span>
+                                                    {%else%}
+
+                                                    <span class="offer">${{course.price}}</span>
+                                                    <span class="active_prise">
+                                                        
+                                                        ${{course.newprice}}
+                                                    </span>
+                                                    {%endif%}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                {%endfor%}
+                                   
                             </div>
-                            {%endif%}
-                            {%endfor%}
-                            {%endif%}
                             <div class="col-xl-12">
                                 <div class="more_courses text-center">
                                     <a href="{%url 'courses'%}" class="boxed_btn_rev">More Courses</a>
                                 </div>
                             </div>
-                               
-                            </div>
-                </div>
-                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                    <div class="row">
-                        {%if courses%}
-                        {%for course in courses|slice:":6"%}
-                        {%if course.category.name == "UI/UX" %}
-                        <div class="col-xl-4 col-lg-4 col-md-6">
-                            <div class="single_courses">
-                                <div class="thumb">
-                                    <a href="{% url 'course' course.id %}">
-                                        <img src="{{course.course_image.url}} " width="362px" height="250px" alt="{{course.name}}">
-                                    </a>
-                                </div>
-                                <div class="courses_info">
-                                    <span>{{course.category}}</span>
-                                    <h3><a href="{% url 'course' course.id %}">{{course.name}}</a></h3>
-                                    <div class="star_prise d-flex justify-content-between">
-                                        <div class="star">
-                                            <i class="flaticon-mark-as-favorite-star"></i>
-                                            <span>(4.5)</span>
-                                        </div>
-                                        <div class="prise">
-                                            {%if not course.newprice%}
-                                            <span class="active_prise">
-                                                ${{course.price}}
-                                            </span>
-                                            {%else%}
+                    </div>
+                    {%endfor%}
 
-                                            <span class="offer">${{course.price}}</span>
-                                            <span class="active_prise">
-                                                
-                                                ${{course.newprice}}
-                                            </span>
-                                            {%endif%}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {%endif%}
-                        {%endfor%}
-                        {%endif%}
-                        <div class="col-xl-12">
-                            <div class="more_courses text-center">
-                                <a href="{%url 'courses'%}" class="boxed_btn_rev">More Courses</a>
-                            </div>
-                        </div>
-                           
-                        </div>
-            </div>
-                
-            
-            <div class="tab-pane fade" id="design" role="tabpanel" aria-labelledby="design-tab">
-                    <div class="row">
-                        {%if courses%}
-                        {%for course in courses|slice:":6"%}
-                        {%if course.category.name == "WebDesign" %}
-                        <div class="col-xl-4 col-lg-4 col-md-6">
-                            <div class="single_courses">
-                                <div class="thumb">
-                                    <a href="{% url 'course' course.id %}">
-                                        <img src="{{course.course_image.url}} " width="362px" height="250px" alt="{{course.name}}">
-                                    </a>
-                                </div>
-                                <div class="courses_info">
-                                    <span>{{course.category}}</span>
-                                    <h3><a href="{% url 'course' course.id %}">{{course.name}}</a></h3>
-                                    <div class="star_prise d-flex justify-content-between">
-                                        <div class="star">
-                                            <i class="flaticon-mark-as-favorite-star"></i>
-                                            <span>(4.5)</span>
-                                        </div>
-                                        <div class="prise">
-                                            {%if not course.newprice%}
-                                            <span class="active_prise">
-                                                ${{course.price}}
-                                            </span>
-                                            {%else%}
 
-                                            <span class="offer">${{course.price}}</span>
-                                            <span class="active_prise">
-                                                
-                                                ${{course.newprice}}
-                                            </span>
-                                            {%endif%}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {%endif%}
-                        {%endfor%}
-                        {%endif%}
-                        <div class="col-xl-12">
-                            <div class="more_courses text-center">
-                                <a href="{%url 'courses'%}" class="boxed_btn_rev">More Courses</a>
-                            </div>
-                        </div>
 
-                        </div>
-                </div>
-                <div class="tab-pane fade" id="Web" role="tabpanel" aria-labelledby="Web-tab">
-                    <div class="row">
-                        {%if courses%}
-                        {%for course in courses|slice:":6"%}
-                        {%if course.category.name == "WebDevelopment" %}
-                        <div class="col-xl-4 col-lg-4 col-md-6">
-                            <div class="single_courses">
-                                <div class="thumb">
-                                    <a href="{% url 'course' course.id %}">
-                                        <img src="{{course.course_image.url}} " width="362px" height="250px" alt="{{course.name}}">
-                                    </a>
-                                </div>
-                                <div class="courses_info">
-                                    <span>{{course.category}}</span>
-                                    <h3><a href="{% url 'course' course.id %}">{{course.name}}</a></h3>
-                                    <div class="star_prise d-flex justify-content-between">
-                                        <div class="star">
-                                            <i class="flaticon-mark-as-favorite-star"></i>
-                                            <span>(4.5)</span>
-                                        </div>
-                                        <div class="prise">
-                                            {%if not course.newprice%}
-                                            <span class="active_prise">
-                                                ${{course.price}}
-                                            </span>
-                                            {%else%}
 
-                                            <span class="offer">${{course.price}}</span>
-                                            <span class="active_prise">
-                                                
-                                                ${{course.newprice}}
-                                            </span>
-                                            {%endif%}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {%endif%}
-                        {%endfor%}
-                        {%endif%}
-                        <div class="col-xl-12">
-                            <div class="more_courses text-center">
-                                <a href="{%url 'courses'%}" class="boxed_btn_rev">More Courses</a>
-                            </div>
-                        </div>
-                           
-                        </div>
-                </div>
-                <div class="tab-pane fade" id="Web1" role="tabpanel" aria-labelledby="Web-tab1">
-                    <div class="row">
-                        {%if courses%}
-                        {%for course in courses|slice:":6"%}
-                        {%if course.category.name == "Wordpress" %}
-                        <div class="col-xl-4 col-lg-4 col-md-6">
-                            <div class="single_courses">
-                                <div class="thumb">
-                                    <a href="{% url 'course' course.id %}">
-                                        <img src="{{course.course_image.url}} " width="362px" height="250px" alt="{{course.name}}">
-                                    </a>
-                                </div>
-                                <div class="courses_info">
-                                    <span>{{course.category}}</span>
-                                    <h3><a href="{% url 'course' course.id %}">{{course.name}}</a></h3>
-                                    <div class="star_prise d-flex justify-content-between">
-                                        <div class="star">
-                                            <i class="flaticon-mark-as-favorite-star"></i>
-                                            <span>(4.5)</span>
-                                        </div>
-                                        <div class="prise">
-                                            {%if not course.newprice%}
-                                            <span class="active_prise">
-                                                ${{course.price}}
-                                            </span>
-                                            {%else%}
 
-                                            <span class="offer">${{course.price}}</span>
-                                            <span class="active_prise">
-                                                
-                                                ${{course.newprice}}
-                                            </span>
-                                            {%endif%}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {%endif%}
-                        {%endfor%}
-                        {%endif%}
-                        <div class="col-xl-12">
-                            <div class="more_courses text-center">
-                                <a href="{%url 'courses'%}" class="boxed_btn_rev">More Courses</a>
-                            </div>
-                        </div>
-                           
-                        </div>
-                </div>
-                <div class="tab-pane fade" id="Web11" role="tabpanel" aria-labelledby="Web-tab11">
-                    <div class="row">
-                        {%if courses%}
-                        {%for course in courses|slice:":6"%}
-                        {%if course.category.name == "MobileDevelopment" %}
-                        <div class="col-xl-4 col-lg-4 col-md-6">
-                            <div class="single_courses">
-                                <div class="thumb">
-                                    <a href="{% url 'course' course.id %}">
-                                        <img src="{{course.course_image.url}} " width="362px" height="250px" alt="{{course.name}}">
-                                    </a>
-                                </div>
-                                <div class="courses_info">
-                                    <span>{{course.category}}</span>
-                                    <h3><a href="{% url 'course' course.id %}">{{course.name}}</a></h3>
-                                    <div class="star_prise d-flex justify-content-between">
-                                        <div class="star">
-                                            <i class="flaticon-mark-as-favorite-star"></i>
-                                            <span>(4.5)</span>
-                                        </div>
-                                        <div class="prise">
-                                            {%if not course.newprice%}
-                                            <span class="active_prise">
-                                                ${{course.price}}
-                                            </span>
-                                            {%else%}
-
-                                            <span class="offer">${{course.price}}</span>
-                                            <span class="active_prise">
-                                                
-                                                ${{course.newprice}}
-                                            </span>
-                                            {%endif%}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {%endif%}
-                        {%endfor%}
-                        {%endif%}
-                        <div class="col-xl-12">
-                            <div class="more_courses text-center">
-                                <a href="{%url 'courses'%}" class="boxed_btn_rev">More Courses</a>
-                            </div>
-                        </div>
-                           
-                        </div>
-                </div>
-                <div class="tab-pane fade" id="Web12" role="tabpanel" aria-labelledby="Adobe-XD-tab9">
-                    <div class="row">
-                        {%if courses%}
-                        {%for course in courses|slice:":6"%}
-                        {%if course.category.name == "AI" %}
-                        <div class="col-xl-4 col-lg-4 col-md-6">
-                            <div class="single_courses">
-                                <div class="thumb">
-                                    <a href="{% url 'course' course.id %}">
-                                        <img src="{{course.course_image.url}} " width="362px" height="250px" alt="{{course.name}}">
-                                    </a>
-                                </div>
-                                <div class="courses_info">
-                                    <span>{{course.category}}</span>
-                                    <h3><a href="{% url 'course' course.id %}">{{course.name}}</a></h3>
-                                    <div class="star_prise d-flex justify-content-between">
-                                        <div class="star">
-                                            <i class="flaticon-mark-as-favorite-star"></i>
-                                            <span>(4.5)</span>
-                                        </div>
-                                        <div class="prise">
-                                            {%if not course.newprice%}
-                                            <span class="active_prise">
-                                                ${{course.price}}
-                                            </span>
-                                            {%else%}
-
-                                            <span class="offer">${{course.price}}</span>
-                                            <span class="active_prise">
-                                                
-                                                ${{course.newprice}}
-                                            </span>
-                                            {%endif%}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {%endif%}
-                        {%endfor%}
-                        {%endif%}
-                        <div class="col-xl-12">
-                            <div class="more_courses text-center">
-                                <a href="{%url 'courses'%}" class="boxed_btn_rev">More Courses</a>
-                            </div>
-                        </div>
-                           
-                        </div>
-                </div>
+                    
                 </div>
             </div>
         </div>
+
     </div>
     <!-- popular_courses_end-->
 

@@ -26,5 +26,6 @@ class Course(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=50)
     publish_date = models.DateTimeField(auto_now= True)
+    displayonsite = models.BooleanField(default=False,verbose_name='Display category on the site')
     def __str__(self):
         return self.name 

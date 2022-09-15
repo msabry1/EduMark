@@ -10,7 +10,8 @@ def courses(request):
         if request.GET['searchbar']:
             all =  all.filter(Q(name__icontains=request.GET['searchbar']) | Q(description__icontains=request.GET['searchbar'])| Q(required_skills__icontains=request.GET['searchbar']))
     context = {
-        'courses':all
+        'courses':all,
+        'category': Category.objects.filter(displayonsite=True),
     }
     return render(request,"courses.html",context)
 
@@ -18,5 +19,6 @@ def courses(request):
 def course(request,coid):
     func(request)
     return render(request,"course_details.html",{
-        'course':Course.objects.get(id=coid)
+        'course':Course.objects.get(id=coid),
+        
     })
