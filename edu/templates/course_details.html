@@ -1,6 +1,7 @@
 {%extends 'base.html'%}
 {%load static%}
 {%block title%}CourseDetails{%endblock title%}
+{%load discount %}
 {%block content%} 
 
 
@@ -12,12 +13,19 @@
                     <div class="course_text">
                            <h3>{{course.name}}</h3>
                            <div class="prise">
-                             {%if course.newprice %}
-                               <span class="inactive">${{course.price}}</span>
-                               <span class="active">${{course.newprice}}</span>
-                               {%else %}
-                               <span class="active">$49</span>
-                               {%endif%}
+                            {%if course.discount %}
+                                {%if course.discount == 100 %}
+                                        <span class="inactive">${{course.price}}</span>
+                                        <span class="active">Free</span>
+                                {%elif course.discount < 100 %}
+                                        <span class="inactive">${{course.price}}</span>
+                                        <span class="active">${{ course.price|dis:course.discount }}</span>
+                                {%else%}
+                                        <span class="active">${{ course.price }}</span>
+                                {%endif%}
+                            {%else %}
+                               <span class="active">${{course.price}}</span>
+                            {%endif%}
                            </div>
                            <div class="rating">
                                <i class="flaticon-mark-as-favorite-star"></i>

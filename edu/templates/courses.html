@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}Courses{% endblock title %}
+{%load discount%}
 {% block content %}
     <!-- bradcam_area_start -->
     <div class="bradcam_area breadcam_bg overlay2">
@@ -18,7 +19,7 @@
                         <p>Your domain control panel is designed for ease-of-use and
                             <br>
                                 allows for all aspects of your
-                                                            domains.</p>
+                                                                                                                            domains.</p>
                         </div>
                     </div>
                 </div>
@@ -71,18 +72,19 @@
                                                                 <span>(4.5)</span>
                                                             </div>
                                                             <div class="prise">
-                                                                {% if not course.newprice %}
-                                                                    <span class="active_prise">
-                                                                        ${{ course.price }}
-                                                                    </span>
-                                                                {% else %}
-
-                                                                    <span class="offer">${{ course.price }}</span>
-                                                                    <span class="active_prise">
-
-                                                                        ${{ course.newprice }}
-                                                                    </span>
-                                                                {% endif %}
+                                                          {%if course.discount %}
+                                                                {%if course.discount == 100 %}
+                                                                  <span class="offer">${{course.price}}</span>
+                                                                  <span class="active">Free</span>
+                                                                {%elif course.discount < 100 %}
+                                                                  <span class="offer">${{course.price}}</span>
+                                                                  <span class="active">${{ course.price|dis:course.discount }}</span>
+                                                                {%else %}
+                                                                  <span class="active">${{course.price}}</span>
+                                                              {%endif%}
+                                                          {%else %}
+                                                                <span class="active">${{course.price}}</span>
+                                                          {%endif%}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -148,18 +150,19 @@
                                                                     <span>(4.5)</span>
                                                                 </div>
                                                                 <div class="prise">
-                                                                    {% if not course.newprice %}
-                                                                        <span class="active_prise">
-                                                                            ${{ course.price }}
-                                                                        </span>
-                                                                    {% else %}
-
-                                                                        <span class="offer">${{ course.price }}</span>
-                                                                        <span class="active_prise">
-
-                                                                            ${{ course.newprice }}
-                                                                        </span>
-                                                                    {% endif %}
+                                                                  {%if course.discount %}
+                                                                    {%if course.discount == 100 %}
+                                                                      <span class="offer">${{course.price}}</span>
+                                                                      <span class="active">Free</span>
+                                                                    {%elif course.discount < 100 %}
+                                                                      <span class="offer">${{course.price}}</span>
+                                                                      <span class="active">${{ course.price|dis:course.discount }}</span>
+                                                                    {%else %}
+                                                                    <span class="active">${{course.price}}</span>
+                                                                    {%endif%}
+                                                                  {%else %}
+                                                                    <span class="active">${{course.price}}</span>
+                                                                  {%endif%}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -193,10 +196,10 @@
                                                     "Working in conjunction with humanitarian aid
                                                     <br>
                                                         agencies we have supported
-                                                                                            programmes to
+                                                                                                                                                                                                            programmes to
                                                         <br>
                                                             alleviate.
-                                                                                                human suffering.
+                                                                                                                                                                                                                        human suffering.
 
                                                         </p>
                                                         <span>- Jquileen</span>
@@ -216,10 +219,10 @@
                                                                 "Working in conjunction with humanitarian aid
                                                                 <br>
                                                                     agencies we have supported
-                                                                                                        programmes to
+                                                                                                                                                                                                                                                programmes to
                                                                     <br>
                                                                         alleviate.
-                                                                                                            human suffering.
+                                                                                                                                                                                                                                                            human suffering.
 
                                                                     </p>
                                                                     <span>- Jquileen</span>

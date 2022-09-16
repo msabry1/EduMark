@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 class Course(models.Model):
     name = models.CharField(max_length=50)
     price = models.DecimalField(max_digits=6,decimal_places=2)
-    newprice = models.FloatField(null=True,blank=True)
+    discount = models.FloatField(null=True,blank=True)
     rating = models.FloatField(null=True,blank=True)
     category = models.ForeignKey('Category',on_delete=models.CASCADE)
     owner =  models.ForeignKey(User,on_delete=models.CASCADE)

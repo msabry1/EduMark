@@ -1,6 +1,7 @@
 {%extends 'base.html'%}
 {%block title%}Home{%endblock title%}
 {%load static%}
+{%load discount%}
 {%block content%}
     <!-- slider_area_start -->
     <div class="slider_area ">
@@ -143,17 +144,18 @@
                                                         <span>(4.5)</span>
                                                     </div>
                                                     <div class="prise">
-                                                        {%if not course.newprice%}
-                                                        <span class="active_prise">
-                                                            ${{course.price}}
-                                                        </span>
-                                                        {%else%}
-
-                                                        <span class="offer">${{course.price}}</span>
-                                                        <span class="active_prise">
-                                                            
-                                                            ${{course.newprice}}
-                                                        </span>
+                                                        {%if course.discount %}
+                                                                {%if course.discount == 100 %}
+                                                                    <span class="offer">${{course.price}}</span>
+                                                                    <span class="active">Free</span>
+                                                                {%elif course.discount < 100 %}
+                                                                    <span class="offer">${{course.price}}</span>
+                                                                    <span class="active">${{ course.price|dis:course.discount }}</span>
+                                                                {%else %}
+                                                                    <span class="active">${{course.price}}</span>
+                                                                {%endif%}
+                                                        {%else %}
+                                                            <span class="active">${{course.price}}</span>
                                                         {%endif%}
                                                     </div>
                                                 </div>
@@ -203,17 +205,18 @@
                                                     <span>(4.5)</span>
                                                 </div>
                                                 <div class="prise">
-                                                    {%if not course.newprice%}
-                                                    <span class="active_prise">
-                                                        ${{course.price}}
-                                                    </span>
-                                                    {%else%}
-
-                                                    <span class="offer">${{course.price}}</span>
-                                                    <span class="active_prise">
-                                                        
-                                                        ${{course.newprice}}
-                                                    </span>
+                                                    {%if course.discount %}
+                                                        {%if course.discount == 100 %}
+                                                            <span class="offer">${{course.price}}</span>
+                                                            <span class="active">Free</span>
+                                                        {%elif course.discount < 100 %}
+                                                            <span class="offer">${{course.price}}</span>
+                                                            <span class="active">${{ course.price|dis:course.discount }}</span>
+                                                        {%else %}
+                                                            <span class="active">${{course.price}}</span>
+                                                        {%endif%}
+                                                    {%else %}
+                                                    <span class="active">${{course.price}}</span>
                                                     {%endif%}
                                                 </div>
                                             </div>
