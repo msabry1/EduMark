@@ -11,7 +11,7 @@ from courses.models import Course , Category
 def homepage(request):
     func(request)
     return render(request,"index.html",context = {
-        'courses':Course.objects.all().order_by('-publish_date') ,
+        'courses':Course.objects.all().order_by('-publish_date')[:6:] ,
         'category':Category.objects.filter(displayonsite=True),
     })
 
