@@ -15,7 +15,7 @@ class Course(models.Model):
     description = models.TextField()
     required_skills = models.TextField()
     course_image = models.ImageField(upload_to='courses_image/%Y/%m/%d',null=True)
-    publish_date = models.DateTimeField(auto_now= True)
+    publish_date = models.DateTimeField(auto_now_add= True)
 
 
 
@@ -25,7 +25,7 @@ class Course(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=50)
-    publish_date = models.DateTimeField(auto_now= True)
+    publish_date = models.DateTimeField(auto_now_add= True)
     displayonsite = models.BooleanField(default=False,verbose_name='Display category on the site')
     def __str__(self):
         return self.name 

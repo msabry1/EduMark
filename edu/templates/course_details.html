@@ -2,6 +2,7 @@
 {%load static%}
 {%block title%}CourseDetails{%endblock title%}
 {%load discount %}
+{%load replace %}
 {%block content%} 
 
 
@@ -59,12 +60,12 @@
                <div class="col-xl-7 col-lg-7">
                    <div class="single_courses">
                        <h3>Descripion</h3>
-                       <p> {{course.description}} </p>
+                       <p> {{course.description|replace|safe}} </p>
                        
                        <br><br><br><br><br><br>
                        
                        <h3>required skills</h3>
-                       <p>{{course.required_skills}}</p>
+                       <p>{{course.required_skills|replace|safe}}</p>
 
                    </div>
                    
@@ -82,7 +83,7 @@
                                        <img src="{% static 'img/latest_blog/author.png' %}" alt="">
                                </div>
                                <div class="name">
-                                   <h3>Macau Wilium</h3>
+                                   <h3>{{course.owner.username}}</h3>
                                    <p>UI/UX Designer</p>
                                </div>
                            </div>
